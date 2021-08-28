@@ -1,5 +1,7 @@
 # rust-kernel-demo
 
+A Hello World of build a kernel in Rust. We're building for the x86_64 target but feel free to adjust if compiling for ARM. For testing we use Qemu.
+
 ### Build
 
 ```sh
