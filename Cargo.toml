@@ -5,11 +5,18 @@ edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[workspace]
+members = [
+    "boot",
+]
+
 [dependencies]
-bootloader = "0.9.8"
+bootloader = "0.10.8"
+linked_list_allocator = "0.9.0"
 pc-keyboard = "0.5.0"
 pic8259 = "0.10.1"
 spin = "0.5.2"
+uart_16550 = "*"
 volatile = "0.2.6"
 x86_64 = "0.14.2"
 
@@ -17,8 +24,17 @@ x86_64 = "0.14.2"
 version = "1.0"
 features = ["spin_no_std"]
 
+[dependencies.crossbeam-queue]
+version = "0.2.1"
+default-features = false
+features = ["alloc"]
+
 [profile.dev]
 panic = "abort"
 
 [profile.release]
 panic = "abort"
+
+[package.metadata.bootloader]
+map-physical-memory = true
+physical-memory-offset = 0x0000_4000_0000_0000
